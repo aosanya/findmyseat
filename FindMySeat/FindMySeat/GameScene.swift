@@ -37,6 +37,7 @@ class GameScene: SKScene , CellsDelegate {
     
     func cellCreated(thisCell: Cell) {
         self.addChild(thisCell)
+        thisCell.countdown(start: 10, frequency: 1)
     }
     
     override func update(_ currentTime: TimeInterval) {

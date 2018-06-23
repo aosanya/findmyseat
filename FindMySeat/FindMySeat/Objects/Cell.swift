@@ -11,6 +11,9 @@ import SpriteKit
 
 class Cell : SKSpriteNode{
     var label : SKLabelNode!
+    var currentTick : Int = 0
+    private var countdownstart : Int = 0
+    private var countdowmfrequency : Double = 0
     
     init(size : CGSize){
         super.init(texture: SKTexture(image: #imageLiteral(resourceName: "BlueCell")), color: UIColor.clear, size: size)
@@ -21,10 +24,36 @@ class Cell : SKSpriteNode{
         super.init(coder: aDecoder)
     }
     
-    func addLabel(){
+    private func addLabel(){
         self.label = SKLabelNode(text: "10")
         self.label.fontColor = UIColor.black
         self.addChild(self.label!)
         self.label.zPosition = self.zPosition  +  1
+    }
+    
+    func text(_ value: String) {
+        self.label!.text = value
+    }
+    
+    func countdown(start : Int,  frequency : Double){
+        self.countdownstart = start
+        self.removeAction(forKey: "countdown")
+        self.currentTick = start
+        let tickAction = SKAction.run({() in self.tick()})
+        let sequenceAction = SKAction.sequence([SKAction.wait(forDuration: frequency), tickAction])
+        let repeatAction = SKAction.repeatForever(sequenceAction)
+        self.run(repeatAction, withKey : "countdown")
+    }
+    
+    private func restartCountDown(){
+        self.countdown(start: self.countdownstart, frequency: self.countdowmfrequency)
+    }
+    
+    private func tick(){
+        self.currentTick -= 1
+        self.text("\(self.currentTick)")
+        if self.currentTick == 0 {
+            self.removeAction(forKey: "countdown")
+        }
     }
 }
