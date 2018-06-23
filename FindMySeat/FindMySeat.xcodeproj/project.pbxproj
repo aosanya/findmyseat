@@ -17,6 +17,8 @@
 		EA46594220DC36EF006A4C92 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA46594020DC36EF006A4C92 /* LaunchScreen.storyboard */; };
 		EA46594D20DC36F0006A4C92 /* FindMySeatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46594C20DC36F0006A4C92 /* FindMySeatTests.swift */; };
 		EA46595820DC36F0006A4C92 /* FindMySeatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46595720DC36F0006A4C92 /* FindMySeatUITests.swift */; };
+		EA46596720DC3A3D006A4C92 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46596620DC3A3D006A4C92 /* Cell.swift */; };
+		EA46596820DC3A3D006A4C92 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46596620DC3A3D006A4C92 /* Cell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,7 @@
 		EA46595320DC36F0006A4C92 /* FindMySeatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindMySeatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA46595720DC36F0006A4C92 /* FindMySeatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMySeatUITests.swift; sourceTree = "<group>"; };
 		EA46595920DC36F0006A4C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA46596620DC3A3D006A4C92 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,7 @@
 		EA46593020DC36EC006A4C92 /* FindMySeat */ = {
 			isa = PBXGroup;
 			children = (
+				EA46596520DC3A10006A4C92 /* Objects */,
 				EA46593120DC36EC006A4C92 /* AppDelegate.swift */,
 				EA46593320DC36EC006A4C92 /* GameScene.sks */,
 				EA46593520DC36EC006A4C92 /* Actions.sks */,
@@ -132,6 +136,14 @@
 				EA46595920DC36F0006A4C92 /* Info.plist */,
 			);
 			path = FindMySeatUITests;
+			sourceTree = "<group>";
+		};
+		EA46596520DC3A10006A4C92 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				EA46596620DC3A3D006A4C92 /* Cell.swift */,
+			);
+			path = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA46593820DC36EC006A4C92 /* GameScene.swift in Sources */,
+				EA46596720DC3A3D006A4C92 /* Cell.swift in Sources */,
 				EA46593A20DC36EC006A4C92 /* GameViewController.swift in Sources */,
 				EA46593220DC36EC006A4C92 /* AppDelegate.swift in Sources */,
 			);
@@ -278,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA46594D20DC36F0006A4C92 /* FindMySeatTests.swift in Sources */,
+				EA46596820DC3A3D006A4C92 /* Cell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
