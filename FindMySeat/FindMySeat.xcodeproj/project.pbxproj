@@ -19,6 +19,7 @@
 		EA46595820DC36F0006A4C92 /* FindMySeatUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46595720DC36F0006A4C92 /* FindMySeatUITests.swift */; };
 		EA46596720DC3A3D006A4C92 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46596620DC3A3D006A4C92 /* Cell.swift */; };
 		EA46596820DC3A3D006A4C92 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46596620DC3A3D006A4C92 /* Cell.swift */; };
+		EA9703C420DE594F00F392E4 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9703C320DE594F00F392E4 /* Cells.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		EA46595720DC36F0006A4C92 /* FindMySeatUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindMySeatUITests.swift; sourceTree = "<group>"; };
 		EA46595920DC36F0006A4C92 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA46596620DC3A3D006A4C92 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		EA9703C320DE594F00F392E4 /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				EA46596620DC3A3D006A4C92 /* Cell.swift */,
+				EA9703C320DE594F00F392E4 /* Cells.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				EA46596720DC3A3D006A4C92 /* Cell.swift in Sources */,
 				EA46593A20DC36EC006A4C92 /* GameViewController.swift in Sources */,
 				EA46593220DC36EC006A4C92 /* AppDelegate.swift in Sources */,
+				EA9703C420DE594F00F392E4 /* Cells.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

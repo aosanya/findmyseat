@@ -9,20 +9,12 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
-    
-    var entities = [GKEntity]()
-    var graphs = [String : GKGraph]()
-    
-    private var lastUpdateTime : TimeInterval = 0
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
+class GameScene: SKScene , CellsDelegate {
+    var cells : Cells!
     
     override func sceneDidLoad() {
-        self.loadCells()
+       self.loadCells()
     }
-    
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
     }
@@ -40,9 +32,11 @@ class GameScene: SKScene {
     }
     
     func loadCells(){
-        let cell = Cell(size: CGSize(width: 50, height: 50))
-        cell.position = CGPoint(x: 0, y: 0)
-        self.addChild(cell)
+        self.cells = Cells(area: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), rows: 8, cols: 8, delegate: self)
+    }
+    
+    func cellCreated(thisCell: Cell) {
+        self.addChild(thisCell)
     }
     
     override func update(_ currentTime: TimeInterval) {
