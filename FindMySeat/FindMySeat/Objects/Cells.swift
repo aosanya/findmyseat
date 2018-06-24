@@ -40,18 +40,26 @@ class Cells{
         
         for i in 0...self.rows - 1{
             for j in 0...self.cols - 1{
-                self.addCell(size: size, pos: CGPoint(x: leftStart + (CGFloat(j) * size.width), y: topStart + (CGFloat(i) * size.height)))
+                self.addCell(row: i, col: j, size: size, pos: CGPoint(x: leftStart + (CGFloat(j) * size.width), y: topStart + (CGFloat(i) * size.height)))
             }
         }
     }
     
-    private func addCell(size : CGSize, pos : CGPoint){
-        let cell = Cell(size: size)
+    private func addCell(row : Int, col : Int, size : CGSize, pos : CGPoint){
+        let cell = Cell(size: size,row: row, col: col)
         cell.position = pos
         self.set.append(cell)
         
         for each in self.delegates{
             each.cellCreated(thisCell: cell)
         }
+    }
+    
+    func getColCells(col : Int) -> [Cell]{
+        return self.set.filter({m in m.col == col})
+    }
+    
+    func getRowCells(row : Int) -> [Cell]{
+        return self.set.filter({m in m.row == row})
     }
 }

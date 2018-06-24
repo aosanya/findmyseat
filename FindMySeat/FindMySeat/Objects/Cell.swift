@@ -10,20 +10,24 @@ import SpriteKit
 
 
 class Cell : SKSpriteNode{
+    var col : Int
+    var row : Int
     var label : SKLabelNode!
     var currentTick : Int = 0
     private var countdownstart : Int = 0
     private var countdowmfrequency : Double = 0
     
-    init(size : CGSize){
+    init(size : CGSize, row : Int, col : Int){
+        self.row = row
+        self.col = col
         super.init(texture: SKTexture(image: #imageLiteral(resourceName: "BlueCell")), color: UIColor.clear, size: size)
         self.addLabel()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder:) has not been implemented")
     }
-    
+   
     private func addLabel(){
         self.label = SKLabelNode(text: "10")
         self.label.fontColor = UIColor.black
@@ -49,11 +53,11 @@ class Cell : SKSpriteNode{
         self.countdown(start: self.countdownstart, frequency: self.countdowmfrequency)
     }
     
-    private func tick(){
-        self.currentTick -= 1
+    private func tick(){        
         self.text("\(self.currentTick)")
         if self.currentTick == 0 {
             self.removeAction(forKey: "countdown")
         }
+        self.currentTick -= 1
     }
 }
