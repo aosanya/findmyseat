@@ -32,6 +32,13 @@ enum AssetType : Int{
         }
     }
     
+    func speed() -> Double{
+        switch self {
+        case .myondiek:
+            return 50
+        }
+    }
+    
     func forwardDirection() -> CGFloat{
         switch self {
         case .myondiek:
@@ -42,7 +49,13 @@ enum AssetType : Int{
 
 class Asset : SKSpriteNode{
     var type : AssetType
-    var cell : Cell
+    var cell : Cell{
+        didSet{
+            if self.cell.id != oldValue.id{
+                self.moveToCell()
+            }
+        }
+    }
     
     init(type : AssetType, cell : Cell){
         self.type = type
@@ -55,5 +68,12 @@ class Asset : SKSpriteNode{
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func moveToCell(){
+        let dist = getDistance(self.position, pointB: self.cell.position)
+        let duration = Double(dist) / self.type.speed()
+        let moveAction = SKAction.move(to: self.cell.position, duration: duration)
+        self.run(moveAction, withKey : "moving")
     }
 }

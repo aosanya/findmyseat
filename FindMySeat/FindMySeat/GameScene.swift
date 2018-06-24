@@ -18,6 +18,7 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
     override func sceneDidLoad() {
         self.loadCells()
         self.loadPlayers()
+        self.move()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -50,6 +51,14 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
     
     func assetCreated(thisAsset: Asset) {
          self.addChild(thisAsset)
+    }
+    
+    func move(){
+        for each in self.assets.set {
+            if let newCell = self.cells.relativeCell(cell: each.cell, row: 1, col: 0){
+                each.cell = newCell
+            }
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {

@@ -46,7 +46,7 @@ class Cells{
     }
     
     private func addCell(row : Int, col : Int, size : CGSize, pos : CGPoint){
-        let cell = Cell(size: size,row: row, col: col)
+        let cell = Cell(id : self.set.count + 1, size: size,row: row, col: col)
         cell.position = pos
         self.set.append(cell)
         
@@ -61,5 +61,9 @@ class Cells{
     
     func getRowCells(row : Int) -> [Cell]{
         return self.set.filter({m in m.row == row})
+    }
+    
+    func relativeCell(cell : Cell, row : Int, col : Int) -> Cell?{
+        return self.set.filter({m in m.row == cell.row + row && m.col == cell.col + col}).first
     }
 }

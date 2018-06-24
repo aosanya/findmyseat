@@ -10,6 +10,7 @@ import SpriteKit
 
 
 class Cell : SKSpriteNode{
+    var id : Int
     var col : Int
     var row : Int
     var label : SKLabelNode!
@@ -17,7 +18,8 @@ class Cell : SKSpriteNode{
     private var countdownstart : Int = 0
     private var countdowmfrequency : Double = 0
     
-    init(size : CGSize, row : Int, col : Int){
+    init(id : Int, size : CGSize, row : Int, col : Int){
+        self.id = id
         self.row = row
         self.col = col
         super.init(texture: SKTexture(image: #imageLiteral(resourceName: "BlueCell")), color: UIColor.clear, size: size)
