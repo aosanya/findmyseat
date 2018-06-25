@@ -37,11 +37,15 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
     }
     
     func loadCells(){
-        self.cells = Cells(area: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), rows: 8, cols: 8, delegate: self)
+        self.cells = Cells(area: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), rows: 12, cols: 8, delegate: self)
     }
     
     func loadPlayers(){
         self.assets = Assets(cells: cells, delegate: self)
+    }
+    
+    func loadSeats(){
+        
     }
     
     func cellCreated(thisCell: Cell) {
@@ -55,7 +59,7 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
     
     func move(){
         for each in self.assets.set {
-            if let newCell = self.cells.relativeCell(cell: each.cell, row: 1, col: 0){
+            if let newCell = self.cells.relativeCell(cell: each.cell, row: -1, col: 0){
                 each.cell = newCell
             }
         }

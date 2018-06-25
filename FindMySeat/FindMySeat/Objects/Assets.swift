@@ -27,11 +27,15 @@ class Assets{
     }
     
     private func createMyAssets(){
-        var cellRows = self.cells.getRowCells(row: 0)
-        cellRows.append(contentsOf: self.cells.getRowCells(row: 1))
-        for each in cellRows{
-            self.addAsset(type: AssetType.myondiek, cell: each)
+        if let cell = self.cells.getCell(id: 10){
+            self.addAsset(type: AssetType.myondiek, cell: cell)
         }
+        //
+//        var cellRows = self.cells.getRowCells(row: 0)
+//        cellRows.append(contentsOf: self.cells.getRowCells(row: 1))
+//        for each in cellRows{
+//            self.addAsset(type: AssetType.myondiek, cell: each)
+//        }
     }
     
     private func addAsset(type : AssetType, cell : Cell){

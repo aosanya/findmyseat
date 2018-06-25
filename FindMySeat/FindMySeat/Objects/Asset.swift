@@ -74,6 +74,32 @@ class Asset : SKSpriteNode{
         let dist = getDistance(self.position, pointB: self.cell.position)
         let duration = Double(dist) / self.type.speed()
         let moveAction = SKAction.move(to: self.cell.position, duration: duration)
-        self.run(moveAction, withKey : "moving")
+        let removeWalking = SKAction.run({() in self.removeAction(forKey: "walking")})
+        let sequence = SKAction.sequence([moveAction, removeWalking])
+        self.run(sequence, withKey : "moving")
+        self.walkAnimation()
+        self.faceToCell()
+    }
+    
+    func faceToCell(){
+        var radAngle = CGFloat(getRadAngle(self.position, pointB: self.cell.position))
+        var angle = radiansToAngle(radAngle)
+        angle += self.type.forwardDirection()
+        radAngle = angleToRadians(angle: angle)
+        self.zRotation = angle
+    }
+    
+    private func walkAnimation(){
+        let walkAtlas = SKTextureAtlas(named: "ondiek")
+        var walkFrames = [SKTexture]()
+        
+        let images  = [Int](arrayLiteral: 2,3,2,1)
+        for  each in images{
+            let walkTextureName = "ondiek\(each)"
+            walkFrames.append(walkAtlas.textureNamed(walkTextureName))
+        }
+        
+        let walkAction = SKAction.animate(with: walkFrames, timePerFrame: 0.15)
+        self.run(SKAction.repeatForever(walkAction), withKey : "walking")
     }
 }

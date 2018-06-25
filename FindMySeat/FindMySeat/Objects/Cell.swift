@@ -8,12 +8,33 @@
 
 import SpriteKit
 
+enum CellObject : Int{
+    case blueSeat = 1
+    
+    func Image() -> UIImage{
+        switch self {
+        case .blueSeat:
+            return #imageLiteral(resourceName: "seatblue")
+        }
+    }
+    
+    
+//    func SizeRatio() -> CGSize{
+//        switch self {
+//        case CGSize(width: <#T##Double#>, height: <#T##Double#>):
+//            return #imageLiteral(resourceName: "seatblue")
+//        }
+//    }
+//    
+}
 
 class Cell : SKSpriteNode{
     var id : Int
     var col : Int
     var row : Int
     var label : SKLabelNode!
+    var object : SKSpriteNode!
+    
     var currentTick : Int = 0
     private var countdownstart : Int = 0
     private var countdowmfrequency : Double = 0
@@ -24,6 +45,7 @@ class Cell : SKSpriteNode{
         self.col = col
         super.init(texture: SKTexture(image: #imageLiteral(resourceName: "BlueCell")), color: UIColor.clear, size: size)
         self.addLabel()
+        self.addObject(object: CellObject.blueSeat)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -61,5 +83,12 @@ class Cell : SKSpriteNode{
             self.removeAction(forKey: "countdown")
         }
         self.currentTick -= 1
+    }
+    
+    func addObject(object : CellObject) {
+        self.object = SKSpriteNode(texture: SKTexture(image: object.Image()))
+        self.object.size = CGSize(width: self.size.width * 0.75, height: self.size.height * 0.75)
+        self.addChild(self.object)
+        self.object.zPosition = self.zPosition + 2
     }
 }

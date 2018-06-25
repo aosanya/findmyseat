@@ -21,3 +21,9 @@ func getDistance(_ pointA : CGPoint, pointB : CGPoint) -> CGFloat{
     let deltaX = pointA.x - pointB.x
     return sqrt(pow(deltaX, 2) + pow(deltaY, 2))
 }
+
+func getRadAngle(_ pointA : CGPoint, pointB : CGPoint) -> Float{
+    let deltaY = Float(pointA.y - pointB.y)
+    let deltaX = Float(pointA.x - pointB.x)
+    return atan2f(deltaY,deltaX)
+}

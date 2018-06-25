@@ -55,6 +55,10 @@ class Cells{
         }
     }
     
+    func getCell(id : Int) -> Cell?{
+        return self.set.filter({m in m.id == id}).first
+    }
+    
     func getColCells(col : Int) -> [Cell]{
         return self.set.filter({m in m.col == col})
     }
