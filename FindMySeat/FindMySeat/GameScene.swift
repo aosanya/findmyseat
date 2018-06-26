@@ -17,6 +17,7 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
     
     override func sceneDidLoad() {
         self.loadCells()
+        self.loadSeats()
         self.loadPlayers()
         self.move()
     }
@@ -46,6 +47,22 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
     
     func loadSeats(){
         
+        func loadSet(cells : [Cell]){
+            for each in cells{
+                let rem = each.row % 2
+                if rem == 1{
+                    each.addObject(object: CellObject.blueSeat)
+                }
+            }
+        }
+        
+        loadSet(cells: self.cells.getColCells(col: 0))
+        loadSet(cells: self.cells.getColCells(col: 1))
+        loadSet(cells: self.cells.getColCells(col: 3))
+        loadSet(cells: self.cells.getColCells(col: 4))
+
+        loadSet(cells: self.cells.getColCells(col: 6))
+        loadSet(cells: self.cells.getColCells(col: 7))
     }
     
     func cellCreated(thisCell: Cell) {

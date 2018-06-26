@@ -45,7 +45,6 @@ class Cell : SKSpriteNode{
         self.col = col
         super.init(texture: SKTexture(image: #imageLiteral(resourceName: "BlueCell")), color: UIColor.clear, size: size)
         self.addLabel()
-        self.addObject(object: CellObject.blueSeat)
     }
     
     required init?(coder aDecoder: NSCoder) {
