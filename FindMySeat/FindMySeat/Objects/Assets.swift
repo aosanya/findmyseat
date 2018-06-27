@@ -39,7 +39,7 @@ class Assets{
     }
     
     private func addAsset(type : AssetType, cell : Cell){
-        let asset = Asset(type: type, cell: cell)
+        let asset = Asset(assetType: type, cell: cell)
         self.set.append(asset)
 
         for each in self.delegates{

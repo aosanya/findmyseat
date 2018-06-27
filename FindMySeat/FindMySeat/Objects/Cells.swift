@@ -70,4 +70,13 @@ class Cells{
     func relativeCell(cell : Cell, row : Int, col : Int) -> Cell?{
         return self.set.filter({m in m.row == cell.row + row && m.col == cell.col + col}).first
     }
+    
+    func radialCells(cell : Cell, radius : Int) -> [Cell]{
+        guard radius > 0 else {
+             return [cell]
+        }
+        
+        return self.set.filter({m in m.row >= cell.row - radius && m.row <= cell.row + radius
+            && m.col >= cell.col - radius && m.col <= cell.col + radius})
+    }
 }

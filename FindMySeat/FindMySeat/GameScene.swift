@@ -9,10 +9,12 @@
 import SpriteKit
 import GameplayKit
 
+var cells : Cells!
+
+
 class GameScene: SKScene , CellsDelegate, AssetsDelegate {
 
     
-    var cells : Cells!
     var assets : Assets!
     
     override func sceneDidLoad() {
@@ -38,7 +40,7 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
     }
     
     func loadCells(){
-        self.cells = Cells(area: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), rows: 12, cols: 8, delegate: self)
+        cells = Cells(area: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), rows: 12, cols: 8, delegate: self)
     }
     
     func loadPlayers(){
@@ -51,18 +53,18 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
             for each in cells{
                 let rem = each.row % 2
                 if rem == 1{
-                    each.addObject(object: CellObject.blueSeat)
+                    each.addObject(object: CellObjectType.blueSeat)
                 }
             }
         }
         
-        loadSet(cells: self.cells.getColCells(col: 0))
-        loadSet(cells: self.cells.getColCells(col: 1))
-        loadSet(cells: self.cells.getColCells(col: 3))
-        loadSet(cells: self.cells.getColCells(col: 4))
+        loadSet(cells: cells.getColCells(col: 0))
+        loadSet(cells: cells.getColCells(col: 1))
+        loadSet(cells: cells.getColCells(col: 3))
+        loadSet(cells: cells.getColCells(col: 4))
 
-        loadSet(cells: self.cells.getColCells(col: 6))
-        loadSet(cells: self.cells.getColCells(col: 7))
+        loadSet(cells: cells.getColCells(col: 6))
+        loadSet(cells: cells.getColCells(col: 7))
     }
     
     func cellCreated(thisCell: Cell) {
@@ -76,10 +78,12 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
     
     func move(){
         for each in self.assets.set {
-            if let newCell = self.cells.relativeCell(cell: each.cell, row: -1, col: 0){
-                each.cell = newCell
-            }
+            //if let newCell = self.cells.relativeCell(cell: each.cell, row: -1, col: 0){
+            //    each.cell = newCell
+            //}
+            each.state()
         }
+    
     }
     
     override func update(_ currentTime: TimeInterval) {

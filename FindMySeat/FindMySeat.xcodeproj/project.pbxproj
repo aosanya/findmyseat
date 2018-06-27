@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA161E5220E263CA0037AEFB /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA161E5120E263CA0037AEFB /* State.swift */; };
+		EA161E5420E264F90037AEFB /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA161E5320E264F90037AEFB /* GameObject.swift */; };
+		EA161E5520E26A710037AEFB /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA161E5320E264F90037AEFB /* GameObject.swift */; };
+		EA161E5620E26AA30037AEFB /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9703C520DEC30F00F392E4 /* Asset.swift */; };
+		EA161E5720E26AA60037AEFB /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9703CA20DED9CD00F392E4 /* Assets.swift */; };
+		EA161E5820E26AAA0037AEFB /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA161E5120E263CA0037AEFB /* State.swift */; };
+		EA161E5920E26AAD0037AEFB /* global.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9703C820DED23B00F392E4 /* global.swift */; };
+		EA161E5A20E26AB20037AEFB /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9703C320DE594F00F392E4 /* Cells.swift */; };
+		EA161E5B20E26ABB0037AEFB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46593720DC36EC006A4C92 /* GameScene.swift */; };
+		EA161E5C20E26ABE0037AEFB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46593920DC36EC006A4C92 /* GameViewController.swift */; };
 		EA46593220DC36EC006A4C92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46593120DC36EC006A4C92 /* AppDelegate.swift */; };
 		EA46593420DC36EC006A4C92 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EA46593320DC36EC006A4C92 /* GameScene.sks */; };
 		EA46593620DC36EC006A4C92 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = EA46593520DC36EC006A4C92 /* Actions.sks */; };
@@ -43,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EA161E5120E263CA0037AEFB /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		EA161E5320E264F90037AEFB /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
 		EA46592E20DC36EC006A4C92 /* FindMySeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMySeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA46593120DC36EC006A4C92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA46593320DC36EC006A4C92 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -91,6 +103,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA161E5020E2614A0037AEFB /* Brain */ = {
+			isa = PBXGroup;
+			children = (
+				EA161E5120E263CA0037AEFB /* State.swift */,
+			);
+			path = Brain;
+			sourceTree = "<group>";
+		};
 		EA46592520DC36EC006A4C92 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +134,7 @@
 		EA46593020DC36EC006A4C92 /* FindMySeat */ = {
 			isa = PBXGroup;
 			children = (
+				EA161E5020E2614A0037AEFB /* Brain */,
 				EA9703C720DED17800F392E4 /* Shared */,
 				EA46596520DC3A10006A4C92 /* Objects */,
 				EA46593120DC36EC006A4C92 /* AppDelegate.swift */,
@@ -154,6 +175,7 @@
 				EA9703C320DE594F00F392E4 /* Cells.swift */,
 				EA9703C520DEC30F00F392E4 /* Asset.swift */,
 				EA9703CA20DED9CD00F392E4 /* Assets.swift */,
+				EA161E5320E264F90037AEFB /* GameObject.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -303,8 +325,10 @@
 				EA9703C620DEC30F00F392E4 /* Asset.swift in Sources */,
 				EA9703CB20DED9CD00F392E4 /* Assets.swift in Sources */,
 				EA46593820DC36EC006A4C92 /* GameScene.swift in Sources */,
+				EA161E5420E264F90037AEFB /* GameObject.swift in Sources */,
 				EA46596720DC3A3D006A4C92 /* Cell.swift in Sources */,
 				EA46593A20DC36EC006A4C92 /* GameViewController.swift in Sources */,
+				EA161E5220E263CA0037AEFB /* State.swift in Sources */,
 				EA46593220DC36EC006A4C92 /* AppDelegate.swift in Sources */,
 				EA9703C420DE594F00F392E4 /* Cells.swift in Sources */,
 			);
@@ -314,8 +338,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA161E5C20E26ABE0037AEFB /* GameViewController.swift in Sources */,
+				EA161E5920E26AAD0037AEFB /* global.swift in Sources */,
+				EA161E5A20E26AB20037AEFB /* Cells.swift in Sources */,
 				EA46594D20DC36F0006A4C92 /* FindMySeatTests.swift in Sources */,
+				EA161E5B20E26ABB0037AEFB /* GameScene.swift in Sources */,
 				EA46596820DC3A3D006A4C92 /* Cell.swift in Sources */,
+				EA161E5620E26AA30037AEFB /* Asset.swift in Sources */,
+				EA161E5820E26AAA0037AEFB /* State.swift in Sources */,
+				EA161E5720E26AA60037AEFB /* Assets.swift in Sources */,
+				EA161E5520E26A710037AEFB /* GameObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

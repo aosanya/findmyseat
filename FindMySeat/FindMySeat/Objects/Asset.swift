@@ -45,23 +45,33 @@ enum AssetType : Int{
             return 180
         }
     }
+    
+    func gameObjectType() -> GameObjectType{
+        switch self {
+        case .myondiek:
+            return GameObjectType.myondiek
+        }
+    }
 }
 
-class Asset : SKSpriteNode{
-    var type : AssetType
+class Asset : GameObject{
+    var assetType : AssetType
     var cell : Cell{
         didSet{
             if self.cell.id != oldValue.id{
                 self.moveToCell()
+                self.cell.asset = self
+                oldValue.asset = nil
             }
         }
     }
     
-    init(type : AssetType, cell : Cell){
-        self.type = type
+    init(assetType : AssetType, cell : Cell){
+        self.assetType = assetType
         self.cell = cell
-        super.init(texture: SKTexture(image: self.type.image()), color: UIColor.clear, size: self.type.size())
-        self.zRotation = angleToRadians(angle: self.type.forwardDirection())
+        super.init(assetType : self.assetType)
+        self.cell.asset = self
+        self.zRotation = angleToRadians(angle: self.assetType.forwardDirection())
         self.position = self.cell.position
         self.zPosition = self.cell.zPosition + 10
     }
@@ -72,7 +82,7 @@ class Asset : SKSpriteNode{
     
     func moveToCell(){
         let dist = getDistance(self.position, pointB: self.cell.position)
-        let duration = Double(dist) / self.type.speed()
+        let duration = Double(dist) / self.assetType.speed()
         let moveAction = SKAction.move(to: self.cell.position, duration: duration)
         let removeWalking = SKAction.run({() in self.removeAction(forKey: "walking")})
         let sequence = SKAction.sequence([moveAction, removeWalking])
@@ -84,7 +94,7 @@ class Asset : SKSpriteNode{
     func faceToCell(){
         var radAngle = CGFloat(getRadAngle(self.position, pointB: self.cell.position))
         var angle = radiansToAngle(radAngle)
-        angle += self.type.forwardDirection()
+        angle += self.assetType.forwardDirection()
         radAngle = angleToRadians(angle: angle)
         self.zRotation = angle
     }
@@ -102,4 +112,23 @@ class Asset : SKSpriteNode{
         let walkAction = SKAction.animate(with: walkFrames, timePerFrame: 0.15)
         self.run(SKAction.repeatForever(walkAction), withKey : "walking")
     }
+    
+    func state(){
+        var radialCells1 = cells.radialCells(cell: self.cell, radius: 0)
+        let state1 = radialCells1.sorted(by: {$0.row < $1.row  && $0.col < $1.col}).enumerated().map{($0, $1.state())}
+        let states1 = state1.map({m in State(index: m.0, value: m.1)})
+        
+        let radialCells2 = cells.radialCells(cell: self.cell, radius: 1)
+        let state2 = radialCells2.sorted(by: {$0.row < $1.row  && $0.col < $1.col}).enumerated().map{($0, $1.state())}
+        let states2 = state2.map({m in State(index: m.0, value: m.1)})
+        
+        let radialCells3 = cells.radialCells(cell: self.cell, radius: 2)
+        let state3 = radialCells3.sorted(by: {$0.row < $1.row  && $0.col < $1.col}).enumerated().map{($0, $1.state())}
+        let states3 = state3.map({m in State(index: m.0, value: m.1)})
+        
+        let radialCells4 = cells.radialCells(cell: self.cell, radius: 3)
+        let state4 = radialCells4.sorted(by: {$0.row < $1.row  && $0.col < $1.col}).enumerated().map{($0, $1.state())}
+        let states4 = state4.map({m in State(index: m.0, value: m.1)})
+    }
+    
 }

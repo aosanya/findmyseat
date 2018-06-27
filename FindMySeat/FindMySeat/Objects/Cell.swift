@@ -8,24 +8,23 @@
 
 import SpriteKit
 
-enum CellObject : Int{
+enum CellObjectType : Int{
     case blueSeat = 1
     
-    func Image() -> UIImage{
+    func image() -> UIImage{
         switch self {
         case .blueSeat:
             return #imageLiteral(resourceName: "seatblue")
         }
     }
     
-    
-//    func SizeRatio() -> CGSize{
-//        switch self {
-//        case CGSize(width: <#T##Double#>, height: <#T##Double#>):
-//            return #imageLiteral(resourceName: "seatblue")
-//        }
-//    }
-//    
+    func gameObjectType() -> GameObjectType{
+        switch self {
+        case .blueSeat:
+            return GameObjectType.blueSeat
+        }
+    }
+
 }
 
 class Cell : SKSpriteNode{
@@ -33,7 +32,8 @@ class Cell : SKSpriteNode{
     var col : Int
     var row : Int
     var label : SKLabelNode!
-    var object : SKSpriteNode!
+    var object : GameObject?
+    var asset : GameObject?
     
     var currentTick : Int = 0
     private var countdownstart : Int = 0
@@ -84,10 +84,27 @@ class Cell : SKSpriteNode{
         self.currentTick -= 1
     }
     
-    func addObject(object : CellObject) {
-        self.object = SKSpriteNode(texture: SKTexture(image: object.Image()))
-        self.object.size = CGSize(width: self.size.width * 0.75, height: self.size.height * 0.75)
-        self.addChild(self.object)
-        self.object.zPosition = self.zPosition + 2
+    func addObject(object : CellObjectType) {
+        self.object = GameObject(cellObject: object, size: CGSize(width: self.size.width * 0.75, height: self.size.height * 0.75))
+        self.addChild(self.object!)
+        self.object!.zPosition = self.zPosition + 2
+    }
+    
+    private func objectState() -> UInt{
+        if self.object != nil{
+            return self.object!.objectType.stateMask()
+        }
+        return 0
+    }
+    
+    private func assetState() -> UInt{
+        if self.asset != nil{
+            return self.asset!.objectType.stateMask()
+        }
+        return 0
+    }
+    
+    func state() -> UInt{
+        return self.objectState() | self.assetState()
     }
 }
