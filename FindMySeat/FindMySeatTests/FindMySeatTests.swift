@@ -21,16 +21,144 @@ class FindMySeatTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testThink() {
+        var decisions = Set<Decision>()
+        var decisionStates = Set<State>()
+        decisionStates.insert(State(index: 1, value: 1))
+        decisions.insert(Decision(index: 1, states: States(set: decisionStates), action: 1))
+        
+        decisionStates = Set<State>()
+        decisionStates.insert(State(index: 1, value: 2))
+        decisions.insert(Decision(index: 2, states: States(set: decisionStates), action: 2))
+
+        decisionStates = Set<State>()
+        decisionStates.insert(State(index: 1, value: 3))
+        decisions.insert(Decision(index: 3, states: States(set: decisionStates), action: 3))
+        
+        let brain = Brain(decisions: decisions)
+        
+        var testDecisionStates = Set<State>()
+        testDecisionStates.insert(State(index: 1, value: 1))
+        var assetStates = Set<States>()
+        assetStates.insert(States(set: testDecisionStates))
+        var decision = brain.getDecision(states: assetStates)
+        XCTAssert(decision != nil)
+        XCTAssert(decision?.action == 1)
+        
+        
+        testDecisionStates = Set<State>()
+        testDecisionStates.insert(State(index: 1, value: 2))
+        assetStates = Set<States>()
+        assetStates.insert(States(set: testDecisionStates))
+        decision = brain.getDecision(states: assetStates)
+        XCTAssert(decision != nil)
+        XCTAssert(decision?.action == 2)
+        
+        
+        testDecisionStates = Set<State>()
+        testDecisionStates.insert(State(index: 1, value: 3))
+        assetStates = Set<States>()
+        assetStates.insert(States(set: testDecisionStates))
+        decision = brain.getDecision(states: assetStates)
+        XCTAssert(decision != nil)
+        XCTAssert(decision?.action == 3)
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testThink2() {
+        var decisions = Set<Decision>()
+        var decisionStates = Set<State>()
+        decisionStates.insert(State(index: 1, value: 1))
+        decisions.insert(Decision(index: 1, states: States(set: decisionStates), action: 1))
+        
+        decisionStates = Set<State>()
+        decisionStates.insert(State(index: 1, value: 1))
+        decisionStates.insert(State(index: 2, value: 2))
+        decisions.insert(Decision(index: 2, states: States(set: decisionStates), action: 2))
+        
+        decisionStates = Set<State>()
+        decisionStates.insert(State(index: 1, value: 1))
+        decisionStates.insert(State(index: 2, value: 2))
+        decisionStates.insert(State(index: 3, value: 3))
+        decisions.insert(Decision(index: 3, states: States(set: decisionStates), action: 3))
+        
+        let brain = Brain(decisions: decisions)
+        
+        var testDecisionStates = Set<State>()
+        testDecisionStates.insert(State(index: 1, value: 1))
+        var assetStates = Set<States>()
+        assetStates.insert(States(set: testDecisionStates))
+        var decision = brain.getDecision(states: assetStates)
+        XCTAssert(decision != nil)
+        XCTAssert(decision?.action == 1)
+        
+        
+        testDecisionStates = Set<State>()
+        testDecisionStates.insert(State(index: 1, value: 1))
+        testDecisionStates.insert(State(index: 2, value: 2))
+        assetStates = Set<States>()
+        assetStates.insert(States(set: testDecisionStates))
+        decision = brain.getDecision(states: assetStates)
+        XCTAssert(decision != nil)
+        XCTAssert(decision?.action == 2)
+        
+        
+        testDecisionStates = Set<State>()
+        testDecisionStates.insert(State(index: 1, value: 1))
+        testDecisionStates.insert(State(index: 2, value: 2))
+        testDecisionStates.insert(State(index: 3, value: 3))
+        assetStates = Set<States>()
+        assetStates.insert(States(set: testDecisionStates))
+        decision = brain.getDecision(states: assetStates)
+        XCTAssert(decision != nil)
+        XCTAssert(decision?.action == 3)
     }
     
+    func testThinkSuperSet() {
+        var decisions = Set<Decision>()
+        var decisionStates = Set<State>()
+        decisionStates.insert(State(index: 1, value: 1))
+        decisions.insert(Decision(index: 1, states: States(set: decisionStates), action: 1))
+        
+        decisionStates = Set<State>()
+        decisionStates.insert(State(index: 1, value: 1))
+        decisionStates.insert(State(index: 2, value: 2))
+        decisions.insert(Decision(index: 2, states: States(set: decisionStates), action: 2))
+        
+        decisionStates = Set<State>()
+        decisionStates.insert(State(index: 1, value: 1))
+        decisionStates.insert(State(index: 2, value: 2))
+        decisionStates.insert(State(index: 3, value: 3))
+        decisions.insert(Decision(index: 3, states: States(set: decisionStates), action: 3))
+        
+        decisionStates = Set<State>()
+        decisionStates.insert(State(index: 1, value: 1))
+        decisionStates.insert(State(index: 2, value: 4))
+        decisionStates.insert(State(index: 3, value: 3))
+        decisions.insert(Decision(index: 4, states: States(set: decisionStates), action: 3))
+        
+        decisionStates = Set<State>()
+        decisionStates.insert(State(index: 1, value: 1))
+        decisionStates.insert(State(index: 2, value: 5))
+        decisionStates.insert(State(index: 3, value: 6))
+        decisions.insert(Decision(index: 5, states: States(set: decisionStates), action: 3))
+        
+        let brain = Brain(decisions: decisions)
+        
+        var testDecisionStates = Set<State>()
+        testDecisionStates.insert(State(index: 2, value: 2))
+        var assetStates = Set<States>()
+        assetStates.insert(States(set: testDecisionStates))
+        var decision = brain.getDecision(states: assetStates)
+        XCTAssert(decision != nil)
+        XCTAssert(decision?.action == 3)
+        
+        testDecisionStates = Set<State>()
+        testDecisionStates.insert(State(index: 1, value: 1))
+        testDecisionStates.insert(State(index: 2, value: 4))
+        assetStates = Set<States>()
+        assetStates.insert(States(set: testDecisionStates))
+        decision = brain.getDecision(states: assetStates)
+        XCTAssert(decision != nil)
+        XCTAssert(decision?.action == 3)
+    }
 }

@@ -18,11 +18,17 @@ class Cells{
     var rows : Int
     var cols : Int
     var delegates = [CellsDelegate]()
+    var cellWidth : CGFloat
+    var cellHeight : CGFloat
     
     init(area : CGRect, rows : Int, cols : Int, delegate : CellsDelegate?){
         self.area = area
         self.rows = rows
         self.cols = cols
+        cellWidth = self.area.width / CGFloat(self.cols)
+        cellHeight = self.area.height / CGFloat(self.rows)
+        
+        
         if delegate != nil{
             self.delegates.append(delegate!)
         }
@@ -31,18 +37,46 @@ class Cells{
     }
     
     private func createCells(){
-        let cellWidth = self.area.width / CGFloat(self.cols)
-        let cellHeight = self.area.height / CGFloat(self.rows)
-        let size = CGSize(width: cellWidth, height: cellHeight)
-        
-        let leftStart = cellWidth * CGFloat(self.cols - 1) / 2 * -1
-        let topStart = cellHeight * CGFloat(self.rows - 1) / 2 * -1
+        var leftStart = self.area.width * -0.5
+        var topStart = self.area.height * -0.5
         
         for i in 0...self.rows - 1{
+            if i == 0 {
+                topStart = self.area.height * -0.5 + (actualCellHeight(row: 0) * 0.5)
+            }
+            else{
+                topStart = topStart + actualCellHeight(row: i - 1)/2 + actualCellHeight(row: i)/2
+            }
+                        
             for j in 0...self.cols - 1{
-                self.addCell(row: i, col: j, size: size, pos: CGPoint(x: leftStart + (CGFloat(j) * size.width), y: topStart + (CGFloat(i) * size.height)))
+                if j == 0 {
+                     leftStart = self.area.width * -0.5  + (actualCellWidth(col: 0) * 0.5)
+                }
+                else{
+                     leftStart = leftStart + actualCellWidth(col: j)
+                }
+                let size = cellSize(row: i, col: j)
+               
+                self.addCell(row: i, col: j, size: size, pos: CGPoint(x: leftStart , y: topStart))
             }
         }
+    }
+    
+    private func actualCellHeight(row : Int) -> CGFloat{
+        if row % 2 == 0{
+            return cellHeight * 0.7
+        }
+        let diff = cellHeight - cellHeight * 0.7
+        
+        return cellHeight + diff
+    }
+    
+    private func actualCellWidth( col : Int) -> CGFloat{
+        return cellWidth
+    }
+    
+    private func cellSize(row : Int, col : Int) -> CGSize{
+        return CGSize(width: actualCellWidth(col: col), height: actualCellHeight(row: row))
     }
     
     private func addCell(row : Int, col : Int, size : CGSize, pos : CGPoint){
@@ -71,6 +105,13 @@ class Cells{
         return self.set.filter({m in m.row == cell.row + row && m.col == cell.col + col}).first
     }
     
+    func relativeCell(cell : Cell, radAngle : CGFloat) -> Cell?{
+        let row = Double(cos(radAngle)).rounded()
+        let col = Double(sin(radAngle)).rounded()
+        
+        return relativeCell(cell: cell, row: Int(row), col: Int(col))
+    }
+    
     func radialCells(cell : Cell, radius : Int) -> [Cell]{
         guard radius > 0 else {
              return [cell]
@@ -78,5 +119,11 @@ class Cells{
         
         return self.set.filter({m in m.row >= cell.row - radius && m.row <= cell.row + radius
             && m.col >= cell.col - radius && m.col <= cell.col + radius})
+    }
+    
+    func radialCellsState(cell : Cell, radius : Int) -> States{
+        let rCells = self.radialCells(cell: cell, radius: radius)
+        let states = rCells.sorted(by: {$0.row < $1.row  && $0.col < $1.col}).enumerated().map{($0, $1.state())}
+        return States(set: Set(states.map({m in State(index: m.0, value: m.1)})))
     }
 }

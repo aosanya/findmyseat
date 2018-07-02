@@ -8,7 +8,10 @@
 
 import UIKit
 
-class State : Equatable{
+private let State_index = "State_index"
+private let State_value = "State_value"
+
+class State : Hashable, Codable{
     var index : Int
     var value : UInt
     
@@ -17,8 +20,15 @@ class State : Equatable{
         self.value = value
     }
     
+    
     static func == (lhs: State, rhs: State) -> Bool {
         return lhs.index == rhs.index && lhs.value == rhs.value
+    }
+
+    var hashValue: Int{
+        get{
+             return ("\(self.index)|\(self.value)").hashValue
+        }
     }
 }
 

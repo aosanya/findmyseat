@@ -21,6 +21,7 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
         self.loadCells()
         self.loadSeats()
         self.loadPlayers()
+        
         self.move()
     }
     
@@ -40,7 +41,7 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
     }
     
     func loadCells(){
-        cells = Cells(area: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), rows: 12, cols: 8, delegate: self)
+        cells = Cells(area: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), rows: 14, cols: 8, delegate: self)
     }
     
     func loadPlayers(){
@@ -51,8 +52,7 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
         
         func loadSet(cells : [Cell]){
             for each in cells{
-                let rem = each.row % 2
-                if rem == 1{
+                if each.row % 2 == 1{
                     each.addObject(object: CellObjectType.blueSeat)
                 }
             }
@@ -77,13 +77,29 @@ class GameScene: SKScene , CellsDelegate, AssetsDelegate {
     }
     
     func move(){
-        for each in self.assets.set {
-            //if let newCell = self.cells.relativeCell(cell: each.cell, row: -1, col: 0){
-            //    each.cell = newCell
-            //}
-            each.state()
-        }
+        
+       for each in self.assets.set {
+ //           self.createSampleBrain(asset: each)
+//            //if let newCell = self.cells.relativeCell(cell: each.cell, row: -1, col: 0){
+//            //    each.cell = newCell
+//            //}
+//            each.state()
+           each.think()
+       }
+    }
     
+    func createSampleBrain(asset : Asset){
+        let stateSet = asset.state()
+        var decisions = Set<Decision>()
+        var index : Int = 0
+
+        for each in stateSet{
+            index += 1
+            decisions.insert(Decision(index : index, states: each, action: Int(Action.MoveForward.rawValue)))
+        }
+
+        let brain = Brain(decisions: decisions)
+        UserInfo.brain(brain: brain)
     }
     
     override func update(_ currentTime: TimeInterval) {

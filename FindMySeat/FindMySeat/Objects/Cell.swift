@@ -45,6 +45,7 @@ class Cell : SKSpriteNode{
         self.col = col
         super.init(texture: SKTexture(image: #imageLiteral(resourceName: "BlueCell")), color: UIColor.clear, size: size)
         self.addLabel()
+        self.text("\(self.row),\(self.col)")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,13 +64,13 @@ class Cell : SKSpriteNode{
     }
     
     func countdown(start : Int,  frequency : Double){
-        self.countdownstart = start
-        self.removeAction(forKey: "countdown")
-        self.currentTick = start
-        let tickAction = SKAction.run({() in self.tick()})
-        let sequenceAction = SKAction.sequence([SKAction.wait(forDuration: frequency), tickAction])
-        let repeatAction = SKAction.repeatForever(sequenceAction)
-        self.run(repeatAction, withKey : "countdown")
+//        self.countdownstart = start
+//        self.removeAction(forKey: "countdown")
+//        self.currentTick = start
+//        let tickAction = SKAction.run({() in self.tick()})
+//        let sequenceAction = SKAction.sequence([SKAction.wait(forDuration: frequency), tickAction])
+//        let repeatAction = SKAction.repeatForever(sequenceAction)
+//        self.run(repeatAction, withKey : "countdown")
     }
     
     private func restartCountDown(){

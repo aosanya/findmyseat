@@ -9,7 +9,7 @@
 import UIKit
 
 func angleToRadians(angle : CGFloat) -> CGFloat{
-    return (angle * CGFloat(Double.pi)) / CGFloat(180)
+   return (angle * CGFloat(Double.pi)) / CGFloat(180)
 }
 
 func radiansToAngle(_ radians : CGFloat) -> CGFloat{

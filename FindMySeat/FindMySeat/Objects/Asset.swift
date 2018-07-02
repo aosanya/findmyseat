@@ -71,9 +71,10 @@ class Asset : GameObject{
         self.cell = cell
         super.init(assetType : self.assetType)
         self.cell.asset = self
-        self.zRotation = angleToRadians(angle: self.assetType.forwardDirection())
+        //self.zRotation = angleToRadians(angle: self.assetType.forwardDirection())
         self.position = self.cell.position
         self.zPosition = self.cell.zPosition + 10
+        self.faceUp()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -91,12 +92,16 @@ class Asset : GameObject{
         self.faceToCell()
     }
     
+    private func faceUp(){
+        self.zRotation = angleToRadians(angle: 180)
+    }
+    
     func faceToCell(){
         var radAngle = CGFloat(getRadAngle(self.position, pointB: self.cell.position))
         var angle = radiansToAngle(radAngle)
-        angle += self.assetType.forwardDirection()
+        angle += 270
         radAngle = angleToRadians(angle: angle)
-        self.zRotation = angle
+        self.zRotation = radAngle
     }
     
     private func walkAnimation(){
@@ -113,22 +118,43 @@ class Asset : GameObject{
         self.run(SKAction.repeatForever(walkAction), withKey : "walking")
     }
     
-    func state(){
-        var radialCells1 = cells.radialCells(cell: self.cell, radius: 0)
-        let state1 = radialCells1.sorted(by: {$0.row < $1.row  && $0.col < $1.col}).enumerated().map{($0, $1.state())}
-        let states1 = state1.map({m in State(index: m.0, value: m.1)})
+    func think(){
+        let brain = UserInfo.brain()
+        guard brain != nil else {
+            return
+        }
+        if let decision = brain?.getDecision(states: self.state()){
+            performDecision(decision: decision)
+        }
+    }
+    
+    func performDecision(decision : Decision) {
+        performAction(action: Action(rawValue: UInt(decision.action)))
+    }
+    
+    func performAction(action : Action?) {
+        guard action != nil else {
+            return
+        }
         
-        let radialCells2 = cells.radialCells(cell: self.cell, radius: 1)
-        let state2 = radialCells2.sorted(by: {$0.row < $1.row  && $0.col < $1.col}).enumerated().map{($0, $1.state())}
-        let states2 = state2.map({m in State(index: m.0, value: m.1)})
+        switch action! {
+        case Action.MoveForward:
+            self.moveForward()
+        }
         
-        let radialCells3 = cells.radialCells(cell: self.cell, radius: 2)
-        let state3 = radialCells3.sorted(by: {$0.row < $1.row  && $0.col < $1.col}).enumerated().map{($0, $1.state())}
-        let states3 = state3.map({m in State(index: m.0, value: m.1)})
+    }
+    
+    func state() -> Set<States>{
+        var stateSet = Set<States>()
+        stateSet.insert(cells.radialCellsState(cell: self.cell, radius: 0))
+        stateSet.insert(cells.radialCellsState(cell: self.cell, radius: 1))
+        stateSet.insert(cells.radialCellsState(cell: self.cell, radius: 2))
+        stateSet.insert(cells.radialCellsState(cell: self.cell, radius: 3))
         
-        let radialCells4 = cells.radialCells(cell: self.cell, radius: 3)
-        let state4 = radialCells4.sorted(by: {$0.row < $1.row  && $0.col < $1.col}).enumerated().map{($0, $1.state())}
-        let states4 = state4.map({m in State(index: m.0, value: m.1)})
+
+        return stateSet
+        
+        
     }
     
 }

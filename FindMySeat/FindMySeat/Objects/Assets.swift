@@ -27,7 +27,7 @@ class Assets{
     }
     
     private func createMyAssets(){
-        if let cell = self.cells.getCell(id: 10){
+        if let cell = self.cells.getCell(id: 11){
             self.addAsset(type: AssetType.myondiek, cell: cell)
         }
         //

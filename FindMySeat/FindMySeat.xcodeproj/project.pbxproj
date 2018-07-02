@@ -17,6 +17,18 @@
 		EA161E5A20E26AB20037AEFB /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9703C320DE594F00F392E4 /* Cells.swift */; };
 		EA161E5B20E26ABB0037AEFB /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46593720DC36EC006A4C92 /* GameScene.swift */; };
 		EA161E5C20E26ABE0037AEFB /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46593920DC36EC006A4C92 /* GameViewController.swift */; };
+		EA2EDD5D20E3552500BAACA2 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EDD5C20E3552500BAACA2 /* States.swift */; };
+		EA2EDD5E20E357D500BAACA2 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EDD5C20E3552500BAACA2 /* States.swift */; };
+		EA2EDD6020E3FA5F00BAACA2 /* Decision.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EDD5F20E3FA5F00BAACA2 /* Decision.swift */; };
+		EA2EDD6120E3FA5F00BAACA2 /* Decision.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EDD5F20E3FA5F00BAACA2 /* Decision.swift */; };
+		EA2EDD6320E4189F00BAACA2 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EDD6220E4189F00BAACA2 /* UserInfo.swift */; };
+		EA2EDD6420E4189F00BAACA2 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EDD6220E4189F00BAACA2 /* UserInfo.swift */; };
+		EA2EDD6620E54ECB00BAACA2 /* UserInfo_Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EDD6520E54ECB00BAACA2 /* UserInfo_Brain.swift */; };
+		EA2EDD6720E54ECB00BAACA2 /* UserInfo_Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EDD6520E54ECB00BAACA2 /* UserInfo_Brain.swift */; };
+		EA2EDD6920E5566300BAACA2 /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EDD6820E5566300BAACA2 /* Brain.swift */; };
+		EA2EDD6A20E5566300BAACA2 /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EDD6820E5566300BAACA2 /* Brain.swift */; };
+		EA2EDD6C20E638BE00BAACA2 /* Asset_Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EDD6B20E638BE00BAACA2 /* Asset_Actions.swift */; };
+		EA2EDD6D20E638BE00BAACA2 /* Asset_Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EDD6B20E638BE00BAACA2 /* Asset_Actions.swift */; };
 		EA46593220DC36EC006A4C92 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA46593120DC36EC006A4C92 /* AppDelegate.swift */; };
 		EA46593420DC36EC006A4C92 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EA46593320DC36EC006A4C92 /* GameScene.sks */; };
 		EA46593620DC36EC006A4C92 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = EA46593520DC36EC006A4C92 /* Actions.sks */; };
@@ -55,6 +67,12 @@
 /* Begin PBXFileReference section */
 		EA161E5120E263CA0037AEFB /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		EA161E5320E264F90037AEFB /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
+		EA2EDD5C20E3552500BAACA2 /* States.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		EA2EDD5F20E3FA5F00BAACA2 /* Decision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decision.swift; sourceTree = "<group>"; };
+		EA2EDD6220E4189F00BAACA2 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		EA2EDD6520E54ECB00BAACA2 /* UserInfo_Brain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo_Brain.swift; sourceTree = "<group>"; };
+		EA2EDD6820E5566300BAACA2 /* Brain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
+		EA2EDD6B20E638BE00BAACA2 /* Asset_Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset_Actions.swift; sourceTree = "<group>"; };
 		EA46592E20DC36EC006A4C92 /* FindMySeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindMySeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA46593120DC36EC006A4C92 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EA46593320DC36EC006A4C92 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -107,6 +125,9 @@
 			isa = PBXGroup;
 			children = (
 				EA161E5120E263CA0037AEFB /* State.swift */,
+				EA2EDD5C20E3552500BAACA2 /* States.swift */,
+				EA2EDD5F20E3FA5F00BAACA2 /* Decision.swift */,
+				EA2EDD6820E5566300BAACA2 /* Brain.swift */,
 			);
 			path = Brain;
 			sourceTree = "<group>";
@@ -171,10 +192,11 @@
 		EA46596520DC3A10006A4C92 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
-				EA46596620DC3A3D006A4C92 /* Cell.swift */,
-				EA9703C320DE594F00F392E4 /* Cells.swift */,
+				EA2EDD6B20E638BE00BAACA2 /* Asset_Actions.swift */,
 				EA9703C520DEC30F00F392E4 /* Asset.swift */,
 				EA9703CA20DED9CD00F392E4 /* Assets.swift */,
+				EA46596620DC3A3D006A4C92 /* Cell.swift */,
+				EA9703C320DE594F00F392E4 /* Cells.swift */,
 				EA161E5320E264F90037AEFB /* GameObject.swift */,
 			);
 			path = Objects;
@@ -184,6 +206,8 @@
 			isa = PBXGroup;
 			children = (
 				EA9703C820DED23B00F392E4 /* global.swift */,
+				EA2EDD6220E4189F00BAACA2 /* UserInfo.swift */,
+				EA2EDD6520E54ECB00BAACA2 /* UserInfo_Brain.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -326,11 +350,17 @@
 				EA9703CB20DED9CD00F392E4 /* Assets.swift in Sources */,
 				EA46593820DC36EC006A4C92 /* GameScene.swift in Sources */,
 				EA161E5420E264F90037AEFB /* GameObject.swift in Sources */,
+				EA2EDD6620E54ECB00BAACA2 /* UserInfo_Brain.swift in Sources */,
 				EA46596720DC3A3D006A4C92 /* Cell.swift in Sources */,
 				EA46593A20DC36EC006A4C92 /* GameViewController.swift in Sources */,
+				EA2EDD5D20E3552500BAACA2 /* States.swift in Sources */,
+				EA2EDD6320E4189F00BAACA2 /* UserInfo.swift in Sources */,
 				EA161E5220E263CA0037AEFB /* State.swift in Sources */,
 				EA46593220DC36EC006A4C92 /* AppDelegate.swift in Sources */,
 				EA9703C420DE594F00F392E4 /* Cells.swift in Sources */,
+				EA2EDD6920E5566300BAACA2 /* Brain.swift in Sources */,
+				EA2EDD6C20E638BE00BAACA2 /* Asset_Actions.swift in Sources */,
+				EA2EDD6020E3FA5F00BAACA2 /* Decision.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,11 +373,17 @@
 				EA161E5A20E26AB20037AEFB /* Cells.swift in Sources */,
 				EA46594D20DC36F0006A4C92 /* FindMySeatTests.swift in Sources */,
 				EA161E5B20E26ABB0037AEFB /* GameScene.swift in Sources */,
+				EA2EDD6720E54ECB00BAACA2 /* UserInfo_Brain.swift in Sources */,
 				EA46596820DC3A3D006A4C92 /* Cell.swift in Sources */,
 				EA161E5620E26AA30037AEFB /* Asset.swift in Sources */,
+				EA2EDD5E20E357D500BAACA2 /* States.swift in Sources */,
+				EA2EDD6420E4189F00BAACA2 /* UserInfo.swift in Sources */,
 				EA161E5820E26AAA0037AEFB /* State.swift in Sources */,
 				EA161E5720E26AA60037AEFB /* Assets.swift in Sources */,
 				EA161E5520E26A710037AEFB /* GameObject.swift in Sources */,
+				EA2EDD6A20E5566300BAACA2 /* Brain.swift in Sources */,
+				EA2EDD6D20E638BE00BAACA2 /* Asset_Actions.swift in Sources */,
+				EA2EDD6120E3FA5F00BAACA2 /* Decision.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
