@@ -9,10 +9,34 @@
 import Foundation
 
 class Brain : Codable{
-    var decisions : Set<Decision>
+    var decisions : Set<Decision> = Set<Decision>()
     
-    init(decisions : Set<Decision>){
-        self.decisions = Set(decisions.sorted(by: {$0.hashValue > $1.hashValue}))
+    init(){
+    
+    }
+    
+    func addDecisions(newDecisions : Set<Decision>){
+        let sortedDecisions = newDecisions.sorted(by: {$0.hashValue < $1.hashValue})
+        for each in sortedDecisions{
+            let existing = self.decisions.filter({m in m.states == each.states}).first
+            if existing != nil{
+                existing!.action = each.action
+                existing!.direction = each.direction
+                return
+            }
+            
+            each.hashValue = self.newHash()
+            self.decisions.insert(each)
+        }
+    }
+    
+    private func newHash() -> Int{
+        guard self.decisions.count > 0 else{
+            return 1
+        }
+        
+        let sortedDecisions = self.decisions.sorted(by: {$0.hashValue < $1.hashValue}).last
+        return sortedDecisions!.hashValue + 1
     }
     
     func getDecision(states : Set<States>) -> Decision?{

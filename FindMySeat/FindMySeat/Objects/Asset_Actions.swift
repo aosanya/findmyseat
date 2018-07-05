@@ -14,12 +14,8 @@ protocol Asset_Actions {
 }
 
 extension Asset : Asset_Actions{
-    func moveForward(){
-        var angle = radiansToAngle(self.zRotation)
-        angle += self.assetType.forwardDirection()
-        let radAngle = angleToRadians(angle: angle)
-        
-        let proposedCell = cells.relativeCell(cell: self.cell, radAngle: radAngle)
+    func move(decision : Decision){
+        let proposedCell = cells.relativeCell(cell: self.cell, row: Int(decision.direction.dy), col: Int(decision.direction.dx))
         guard proposedCell != nil else{
             return
         }

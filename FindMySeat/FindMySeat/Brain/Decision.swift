@@ -7,13 +7,11 @@
 //
 
 enum Action : UInt{
-    case MoveForward
+    case Move
 }
 
 import UIKit
 
-private let Decision_states = "Decision_states"
-private let Decision_action = "Decision_action"
 
 class Decision : Hashable , Codable{
     var hashValue: Int
@@ -23,12 +21,14 @@ class Decision : Hashable , Codable{
     }
     
     var states : States
-    var action : Int
+    var action : UInt
+    var direction : CGVector
     
-    init(index : Int, states : States, action : Int){
+    init(index : Int, states : States, action : UInt, direction : CGVector){
         self.hashValue = index
         self.action = action
         self.states = states
+        self.direction = direction
     }
     
     

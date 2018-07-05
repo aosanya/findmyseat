@@ -25,17 +25,18 @@ class FindMySeatTests: XCTestCase {
         var decisions = Set<Decision>()
         var decisionStates = Set<State>()
         decisionStates.insert(State(index: 1, value: 1))
-        decisions.insert(Decision(index: 1, states: States(set: decisionStates), action: 1))
+        decisions.insert(Decision(index: 1, states: States(set: decisionStates), action: 1, direction: CGVector(dx: 1, dy: 0)))
         
         decisionStates = Set<State>()
         decisionStates.insert(State(index: 1, value: 2))
-        decisions.insert(Decision(index: 2, states: States(set: decisionStates), action: 2))
+        decisions.insert(Decision(index: 2, states: States(set: decisionStates), action: 2, direction: CGVector(dx: 1, dy: 0)))
 
         decisionStates = Set<State>()
         decisionStates.insert(State(index: 1, value: 3))
-        decisions.insert(Decision(index: 3, states: States(set: decisionStates), action: 3))
+        decisions.insert(Decision(index: 3, states: States(set: decisionStates), action: 3, direction: CGVector(dx: 1, dy: 0)))
         
-        let brain = Brain(decisions: decisions)
+        let brain = Brain()
+        brain.addDecisions(newDecisions: decisions)
         
         var testDecisionStates = Set<State>()
         testDecisionStates.insert(State(index: 1, value: 1))
@@ -68,20 +69,21 @@ class FindMySeatTests: XCTestCase {
         var decisions = Set<Decision>()
         var decisionStates = Set<State>()
         decisionStates.insert(State(index: 1, value: 1))
-        decisions.insert(Decision(index: 1, states: States(set: decisionStates), action: 1))
+        decisions.insert(Decision(index: 1, states: States(set: decisionStates), action: 1, direction: CGVector(dx: 1, dy: 0)))
         
         decisionStates = Set<State>()
         decisionStates.insert(State(index: 1, value: 1))
         decisionStates.insert(State(index: 2, value: 2))
-        decisions.insert(Decision(index: 2, states: States(set: decisionStates), action: 2))
+        decisions.insert(Decision(index: 2, states: States(set: decisionStates), action: 2, direction: CGVector(dx: 1, dy: 0)))
         
         decisionStates = Set<State>()
         decisionStates.insert(State(index: 1, value: 1))
         decisionStates.insert(State(index: 2, value: 2))
         decisionStates.insert(State(index: 3, value: 3))
-        decisions.insert(Decision(index: 3, states: States(set: decisionStates), action: 3))
+        decisions.insert(Decision(index: 3, states: States(set: decisionStates), action: 3, direction: CGVector(dx: 1, dy: 0)))
         
-        let brain = Brain(decisions: decisions)
+        let brain = Brain()
+        brain.addDecisions(newDecisions: decisions)
         
         var testDecisionStates = Set<State>()
         testDecisionStates.insert(State(index: 1, value: 1))
@@ -117,32 +119,33 @@ class FindMySeatTests: XCTestCase {
         var decisions = Set<Decision>()
         var decisionStates = Set<State>()
         decisionStates.insert(State(index: 1, value: 1))
-        decisions.insert(Decision(index: 1, states: States(set: decisionStates), action: 1))
+        decisions.insert(Decision(index: 1, states: States(set: decisionStates), action: 1, direction: CGVector(dx: 1, dy: 0)))
         
         decisionStates = Set<State>()
         decisionStates.insert(State(index: 1, value: 1))
         decisionStates.insert(State(index: 2, value: 2))
-        decisions.insert(Decision(index: 2, states: States(set: decisionStates), action: 2))
+        decisions.insert(Decision(index: 2, states: States(set: decisionStates), action: 2, direction: CGVector(dx: 1, dy: 0)))
         
         decisionStates = Set<State>()
         decisionStates.insert(State(index: 1, value: 1))
         decisionStates.insert(State(index: 2, value: 2))
         decisionStates.insert(State(index: 3, value: 3))
-        decisions.insert(Decision(index: 3, states: States(set: decisionStates), action: 3))
+        decisions.insert(Decision(index: 3, states: States(set: decisionStates), action: 3, direction: CGVector(dx: 1, dy: 0)))
         
         decisionStates = Set<State>()
         decisionStates.insert(State(index: 1, value: 1))
         decisionStates.insert(State(index: 2, value: 4))
         decisionStates.insert(State(index: 3, value: 3))
-        decisions.insert(Decision(index: 4, states: States(set: decisionStates), action: 3))
+        decisions.insert(Decision(index: 4, states: States(set: decisionStates), action: 3, direction: CGVector(dx: 1, dy: 0)))
         
         decisionStates = Set<State>()
         decisionStates.insert(State(index: 1, value: 1))
         decisionStates.insert(State(index: 2, value: 5))
         decisionStates.insert(State(index: 3, value: 6))
-        decisions.insert(Decision(index: 5, states: States(set: decisionStates), action: 3))
+        decisions.insert(Decision(index: 5, states: States(set: decisionStates), action: 3, direction: CGVector(dx: 1, dy: 0)))
         
-        let brain = Brain(decisions: decisions)
+        let brain = Brain()
+        brain.addDecisions(newDecisions: decisions)
         
         var testDecisionStates = Set<State>()
         testDecisionStates.insert(State(index: 2, value: 2))
@@ -150,7 +153,7 @@ class FindMySeatTests: XCTestCase {
         assetStates.insert(States(set: testDecisionStates))
         var decision = brain.getDecision(states: assetStates)
         XCTAssert(decision != nil)
-        XCTAssert(decision?.action == 3)
+        XCTAssert(decision?.action == 3, "Was expecting 3 but found \(decision?.action)")
         
         testDecisionStates = Set<State>()
         testDecisionStates.insert(State(index: 1, value: 1))

@@ -24,7 +24,23 @@ enum CellObjectType : Int{
             return GameObjectType.blueSeat
         }
     }
+}
 
+enum CellState : UInt{
+    case empty = 1
+    case selected = 2
+    case nextmove = 3
+    
+    func image() -> UIImage{
+        switch self {
+        case .empty:
+            return #imageLiteral(resourceName: "BlueCell")
+        case .selected:
+            return #imageLiteral(resourceName: "BlueCell200")
+        case .nextmove:
+            return #imageLiteral(resourceName: "BlueCell220")
+        }
+    }
 }
 
 class Cell : SKSpriteNode{
@@ -34,6 +50,13 @@ class Cell : SKSpriteNode{
     var label : SKLabelNode!
     var object : GameObject?
     var asset : GameObject?
+    var actionstate : CellState = CellState.empty{
+        didSet{
+            if self.actionstate != oldValue{
+                self.texture = SKTexture(image: self.actionstate.image())
+            }
+        }
+    }
     
     var currentTick : Int = 0
     private var countdownstart : Int = 0
@@ -43,7 +66,7 @@ class Cell : SKSpriteNode{
         self.id = id
         self.row = row
         self.col = col
-        super.init(texture: SKTexture(image: #imageLiteral(resourceName: "BlueCell")), color: UIColor.clear, size: size)
+        super.init(texture: SKTexture(image: self.actionstate.image()), color: UIColor.clear, size: size)
         self.addLabel()
         self.text("\(self.row),\(self.col)")
     }
@@ -108,4 +131,9 @@ class Cell : SKSpriteNode{
     func state() -> UInt{
         return self.objectState() | self.assetState()
     }
+    
+    func relativity(cell : Cell) -> (Int, Int){
+        return (cell.row - self.row,  cell.col - self.col)
+    }
+    
 }

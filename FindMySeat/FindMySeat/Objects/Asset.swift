@@ -54,8 +54,12 @@ enum AssetType : Int{
     }
 }
 
+protocol AssetDelegate {
+    func CompletedAction(asset : Asset)
+}
 class Asset : GameObject{
     var assetType : AssetType
+    var delegate : AssetDelegate?
     var cell : Cell{
         didSet{
             if self.cell.id != oldValue.id{
@@ -75,13 +79,23 @@ class Asset : GameObject{
         self.position = self.cell.position
         self.zPosition = self.cell.zPosition + 10
         self.faceUp()
+        self.startThinking()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func isPerformingAction() -> Bool{
+        guard action(forKey: "moving") == nil else {
+            return true
+        }
+        
+        return false
+    }
+    
     func moveToCell(){
+        
         let dist = getDistance(self.position, pointB: self.cell.position)
         let duration = Double(dist) / self.assetType.speed()
         let moveAction = SKAction.move(to: self.cell.position, duration: duration)
@@ -90,6 +104,15 @@ class Asset : GameObject{
         self.run(sequence, withKey : "moving")
         self.walkAnimation()
         self.faceToCell()
+    }
+    
+    private func startThinking(){
+        guard self.action(forKey: "moving") == nil else{
+            return
+        }
+        let thinkAction = SKAction.run({() in self.think()})
+        let sequence = SKAction.sequence([SKAction.wait(forDuration: 5), thinkAction])
+        self.run(SKAction.repeatForever(sequence), withKey : "thinking")
     }
     
     private func faceUp(){
@@ -128,19 +151,26 @@ class Asset : GameObject{
         }
     }
     
-    func performDecision(decision : Decision) {
-        performAction(action: Action(rawValue: UInt(decision.action)))
+    private func ActionComplete(){
+        if self.delegate != nil{
+            self.delegate!.CompletedAction(asset: self)
+        }
     }
     
-    func performAction(action : Action?) {
-        guard action != nil else {
+    func performDecision(decision : Decision) {
+        
+        switch decision.action {
+        case Action.Move.rawValue:
+            self.move(decision: decision)
+        default:
             return
         }
         
-        switch action! {
-        case Action.MoveForward:
-            self.moveForward()
-        }
+        //performAction(action: Action(rawValue: UInt(decision.action)))
+    }
+    
+    func performAction(action : Action?) {
+        
         
     }
     
